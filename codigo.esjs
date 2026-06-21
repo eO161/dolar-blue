@@ -1,6 +1,6 @@
 importar { Terminal } desde "@es-js/terminal"
-importar { obtenerJson } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.esjs"
-importar { validarSecreto } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.esjs"
+importar { obtenerJson } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js"
+importar { validarSecreto } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js"
 
 asincrono funcion inicio() {
   Terminal.escribir("¡Hola! Ingresa tu palabra secreta:")
