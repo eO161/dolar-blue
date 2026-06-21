@@ -1,0 +1,35 @@
+importar { Terminal } desde "@es-js/terminal"
+importar { obtenerJson } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.esjs"
+importar { validarSecreto } desde "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.esjs"
+
+asincrono funcion inicio() {
+  Terminal.escribir("¡Hola! Ingresa tu palabra secreta:")
+
+  var secreto = esperar Terminal.leer()
+
+  var dni = "25119161"
+
+  si (esperar validarSecreto(dni, secreto)) {
+    esperar mostrarCotizacion()
+  } sino {
+    Terminal.escribir("Palabra secreta inválida")
+  }
+
+  Terminal.escribir("Presiona ENTER para volver a ingresar")
+  esperar Terminal.leerEnter()
+  Terminal.limpiar()
+  inicio()
+}
+
+asincrono funcion mostrarCotizacion() {
+  Terminal.escribir("Cargando cotización...")
+
+  var dolarBlue = esperar obtenerJson("https://dolarapi.com/v1/dolares/blue")
+
+  Terminal.escribir("💵 Dólar Blue hoy:")
+  Terminal.escribir("  Compra: $" + dolarBlue.compra)
+  Terminal.escribir("  Venta:  $" + dolarBlue.venta)
+  Terminal.escribir("  Fecha:  " + dolarBlue.fechaActualizacion)
+}
+
+inicio()
