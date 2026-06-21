@@ -4,10 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dólar Blue Hoy</title>
-    <script src="https://unpkg.com/@es-js/core"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="./codigo.esjs"></script>
+    <script type="module">
+      import { Terminal } from "https://esm.sh/@es-js/terminal"
+      import { obtenerJson } from "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js"
+      import { validarSecreto } from "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js"
+
+      async function inicio() {
+        Terminal.escribir("¡Hola! Ingresa tu palabra secreta:")
+        const secreto = await Terminal.leer()
+        const dni = "25119161"
+
+        if (await validarSecreto(dni, secreto)) {
+          await mostrarCotizacion()
+        } else {
+          Terminal.escribir("Palabra secreta inválida")
+        }
+
+        Terminal.escribir("Presiona ENTER para volver a ingresar")
+        await Terminal.leerEnter()
+        Terminal.limpiar()
+        inicio()
+      }
+
+      async function mostrarCotizacion() {
+        Terminal.escribir("Cargando cotización...")
+        const dolarBlue = await obtenerJson("https://dolarapi.com/v1/dolares/blue")
+        Terminal.escribir("💵 Dólar Blue hoy:")
+        Terminal.escribir("  Compra: $" + dolarBlue.compra)
+        Terminal.escribir("  Venta:  $" + dolarBlue.venta)
+        Terminal.escribir("  Fecha:  " + dolarBlue.fechaActualizacion)
+      }
+
+      inicio()
+    </script>
   </body>
 </html>
