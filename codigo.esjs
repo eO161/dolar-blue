@@ -26,9 +26,9 @@ asincrono funcion mostrarCotizacion() {
 
   var dolarBlue = esperar obtenerJson("https://dolarapi.com/v1/dolares/blue")
 
-  Terminal.escribir("💵 Dólar Blue hoy:")
-  Terminal.escribir("  Compra: $" + dolarBlue.compra)
-  Terminal.escribir("  Venta:  $" + dolarBlue.venta)
+  Terminal.escribir("💵 Valor del Dólar Blue hoy:")
+  Terminal.escribir("  Precio de Compra: $" + dolarBlue.compra)
+  Terminal.escribir("  Precio de Venta:  $" + dolarBlue.venta)
   Terminal.escribir("  Fecha:  " + dolarBlue.fechaActualizacion)
 }
 
